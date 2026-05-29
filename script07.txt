@@ -1,0 +1,718 @@
+@@ -0,0 +1,771 @@
+//console.log("javascript connected")
+
+/*Real-Time JavaScript Tasks (API + Async + Array Methods)
+1. E-Commerce Product Filter
+Using the same API:
+https://fakestoreapi.com/products/
+Task:
+Fetch all products
+Filter products whose:
+price > 100
+category = "electronics"
+Print:
+title
+price
+Expected Concept:
+fetch()
+filter()
+forEach()*/
+
+/*// Fetch products from API
+fetch("https://fakestoreapi.com/products/")
+  .then(response => response.json())
+  .then(data => {
+
+    // Filter products
+    let results = data.filter(product =>
+      product.price > 100 &&
+      product.category === "electronics"
+    );
+
+    // Print title and price
+    results.forEach(product => {
+      console.log("Title:", product.title);
+      console.log("Price:", product.price);
+      console.log("-------------------");
+    });
+
+  })
+  .catch(error => {
+    console.log("Error:", error);
+  });*/
+
+/*2. Online Shopping Cart Total
+Task:
+Create an array:
+let cart = [
+  {product:"Shoes", price:2000, qty:2},
+  {product:"Watch", price:1500, qty:1},
+  {product:"Bag", price:1000, qty:3}
+]
+Calculate:
+Total bill amount
+Expected Output:
+8500
+Use:
+reduce()*/
+
+
+/*let cart = [
+  {product:"Shoes", price:2000, qty:2},
+  {product:"Watch", price:1500, qty:1},
+  {product:"Bag", price:1000, qty:3}
+]
+
+let results=cart.reduce((accumulator,item)=>{
+    return accumulator+(item.price*item.qty);
+},0);
+console.log(results);
+
+//8500                */
+
+/*3. Employee Salary Dashboard
+Task:
+Filter employees whose salary is greater than 40000.
+let employees = [
+  {name:"John", salary:25000},
+  {name:"Sam", salary:50000},
+  {name:"Ravi", salary:45000},
+  {name:"Kumar", salary:30000}
+]
+Output:
+Sam
+Ravi
+Use:
+filter()
+map()       */
+
+
+/*let employees = [
+  {name:"John", salary:25000},
+  {name:"Sam", salary:50000},
+  {name:"Ravi", salary:45000},
+  {name:"Kumar", salary:30000}
+]
+
+let results=employees.filter(employee=>employee.salary>40000).map(employee=>employee.name);
+console.log(results);*/
+
+//output:
+
+//Sam
+//Ravi
+
+/*4. Food Delivery App
+Task:
+Find first restaurant rating greater than 4.5
+let hotels = [
+  {hotel:"A2B", rating:4.1},
+  {hotel:"KFC", rating:4.7},
+  {hotel:"Dominos", rating:4.3}
+]
+Use:
+find()*/
+
+/*let hotels = [
+  {hotel:"A2B", rating:4.1},
+  {hotel:"KFC", rating:4.7},
+  {hotel:"Dominos", rating:4.3}
+]
+
+let results=hotels.find(hotel=>hotel.rating>4.5);
+console.log(results); */
+
+//output
+//KFC
+
+/*5. Student Pass/Fail System
+Task:
+Check all students passed or not.
+let marks = [45,67,89,90,34]
+Condition:
+pass mark = 35
+Use:
+every()*/
+
+/*let marks=[45,67,89,90,34];
+let results=marks.every(mark=>mark>35);
+console.log(results);
+
+//output
+
+//false          */
+
+
+/*6. OTP Verification System
+Task:
+Check whether entered OTP exists.
+let otpList = [1234,4567,7890,9876]
+Use:
+includes() */
+
+/*let otpList=[1234,4567,7890,9876];
+
+let enteredOtp=4567;
+
+if(otpList.includes(enteredOtp)){
+    console.log("otp verified");
+}else{
+    console.log("otp not verified");
+}
+
+//output
+//otp verified  */
+
+/*7. Movie Booking Timer
+Task:
+Create countdown from 10 to 0 using:
+setInterval()
+clearInterval()
+Expected Output:
+10
+9
+8
+...
+0
+Booking Closed*/
+
+/*let count=10;
+let timer=setInterval(()=>{
+    console.log(count);
+    count--;
+    if(count<0){
+        clearInterval(timer);
+        console.log("Booking closed");
+    }
+},1000);*/
+
+
+//output:
+
+/*10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+Stopped*/
+
+/*8. Instagram Like Counter
+Task:
+Every second increase likes count.
+Likes : 1
+Likes : 2
+Likes : 3
+Stop after 10 likes.
+Use:
+setInterval()
+clearInterval() */
+
+/*let likes=0;
+
+let Counter=setInterval(()=>{
+    likes++;
+    console.log("likes:"+likes);
+    if(likes===10){
+        clearInterval(Counter);
+        console.log("stopped");
+    }
+},1000);*/
+
+/*//output:
+
+Likes : 1
+Likes : 2
+Likes : 3
+Likes : 4
+Likes : 5
+Likes : 6
+Likes : 7
+Likes : 8
+Likes : 9
+Likes : 10
+Like Counter Stopped*/
+
+/*9. Login Authentication
+Task:
+Check:
+username
+password
+let username = "admin"
+let password = "12345"
+Condition:
+both correct → Login Success
+otherwise → Invalid Credentials
+Use:
+if else
+logical operator */
+
+/*let username="admin";
+let password="12345";
+
+if(username==="admin" && password==="12345"){
+    console.log("Login Success");
+}else{
+    console.log("Invalid Credentials");
+}
+
+//output
+//Login Success  */
+
+
+/*10. Weather App Simulation
+Task:
+Create Promise manually.
+Condition:
+If internet = true → resolve("Weather Data")
+else reject("No Internet")
+Use:
+Promise
+resolve
+reject
+then
+catch */
+
+/*let internet=true;
+
+let weatherPromise=new Promise((resolve,reject)=>{
+    if(internet){
+        resolve("Weather Data");
+    }else{
+        reject("No Internet");
+    }
+});
+
+weatherPromise.then((data)=>{
+    console.log(data);
+}).catch((error)=>{
+    console.log(error);
+});
+
+//output:
+
+//weather data  */
+
+/*Mini Project Level Tasks
+11. Amazon Product Search
+Task:
+Search products containing word "shirt"
+Use:
+filter()
+includes()  */
+
+/*let products = [
+  "white shirt",
+  "black shoes",
+  "blue tshirt",
+  "formal shirt",
+  "watch"
+];
+let results=products.filter(product=>product.includes("shirt"));
+console.log(results);
+
+//output:
+//white shirt
+//formal shirt
+//blue tshirt  */
+
+/*12. YouTube Video Duration
+Task:
+Calculate total watch time.
+let videos = [10,20,30,40]
+Use:
+reduce()*/
+
+/*let videos=[10,20,30,40];
+let results=videos.reduce((accumulator,item)=>{
+    return accumulator+item;
+},0)
+console.log(results);  */
+
+//output:
+//100
+
+/*13. Swiggy Order Status
+Task:
+Use switch statement.
+Placed
+Preparing
+Out for Delivery
+Delivered
+Print suitable message.*/
+
+
+/*let status = "Preparing";
+
+switch (status) {
+
+    case "Placed":
+        console.log("Your order has been placed");
+        break;
+
+    case "Preparing":
+        console.log("Your food is being prepared");
+        break;
+
+    case "Out for Delivery":
+        console.log("Your order is out for delivery");
+        break;
+
+    case "Delivered":
+        console.log("Your order has been delivered");
+        break;
+
+    default:
+        console.log("Invalid Order Status");
+} 
+
+output:
+Your food is being prepared  */
+
+/*14. WhatsApp Chat Analyzerhere","o
+Task:
+Count total messages.
+let chats = ["hi","hello","where","ok","bye"]
+Use:
+length
+loop  */
+
+/*let chats = ["hi","hello","wk","bye"];
+
+let count = 0;
+
+for(let i = 0; i < chats.length; i++){
+    count++;
+}
+
+console.log("Total Messages:", count);
+
+//5                                     */
+
+
+/*15. Netflix Age Restriction
+Task:
+If age >= 18:
+show movie
+Else:
+access denied
+Use:
+ternary operator
+age >= 18 ? "watch movie" : "access denied" */
+
+
+/*let age=21;
+console.log(age >= 18 ? "watch movie" : "access denied");*/
+
+//output:
+//watch movie
+
+
+/*Advanced Real-Time Tasks
+16. Flipkart Product Sorting
+Task:
+Sort products by price low to high.
+let prices = [1200,450,9999,2500,700]
+Use:
+sort((a,b)=>a-b)            */
+
+/*let prices=[1200,450,9999,2500,700];
+let results=prices.sort((a,b)=>a-b);
+console.log(results);                 */
+
+//output:
+//[450,700,2500,1200,9999];
+
+
+/*17. Employee Attendance
+Task:
+Convert:
+["present","absent","present"]
+Into object count:
+{
+ present:2,
+ absent:1
+}
+Use:
+reduce()*/
+
+/*let attendance = ["present","absent","present"];
+
+let results = attendance.reduce((accumulator, item) => {
+
+    if(accumulator[item]){
+        accumulator[item]++;
+    }else{
+        accumulator[item] = 1;
+    }
+
+    return accumulator;
+
+}, {});
+
+console.log(results);
+
+//output
+
+//present 2 absent 1 */
+
+/*18. Banking System
+Task:
+Create:
+deposit()
+withdraw()
+checkBalance()
+Using functions. */
+
+
+/*let balance=5000;
+
+function deposit(amount){
+    balance+=amount;
+    console.log(amount);
+}
+
+function withdraw(amount){
+    if(balance>=amount){
+        balance-=amount;
+        console.log(amount);
+}else{
+    console.log("insufficient balance");
+}
+}
+
+function checkBalance(){
+    console.log(balance);
+}
+
+deposit(2000);
+
+withdraw(1000);
+
+checkBalance();
+
+//5000        */
+
+
+/*19. Zomato Rating Checker
+Task:
+Check any hotel rating below 3.
+Use:
+some()                       */
+
+
+/*let hotels = [
+  {hotel:"A2B", rating:4.1},
+  {hotel:"KFC", rating:2.8},
+  {hotel:"Dominos", rating:4.3}
+];
+
+let result = hotels.some(hotel => hotel.rating < 3);
+
+console.log(result);
+
+//output:
+  
+//true           */
+
+/*20. Real API Product Table
+Task:
+Fetch API and print:
+title
+price
+image
+Inside HTML cards dynamically.
+Concepts:
+fetch()
+DOM
+map()
+template literal*/
+
+
+/*fetch("https://fakestoreapi.com/products")
+.then(response => response.json())
+.then(data => {
+
+    let cards = data.map(product => {
+
+        return `
+            <div class="card">
+                <img src="${product.image}" width="100">
+                <h3>${product.title}</h3>
+                <p>₹ ${product.price}</p>
+            </div>
+        `;
+
+    }).join("");
+
+    document.getElementById("products").innerHTML = cards;
+
+});*/
+
+
+/*Challenge Task 🔥
+21. Build Small E-Commerce Logic
+Features:
+Fetch products
+Filter by category
+Sort by price
+Search product
+Add to cart
+Total calculation
+Concepts Covered:
+fetch
+async
+array methods
+DOM
+events
+functions
+objects
+loops
+higher order functions*/
+
+
+// Products
+let products = [
+    {
+        id: 1,
+        name: "iPhone",
+        category: "mobile",
+        price: 70000
+    },
+
+    {
+        id: 2,
+        name: "Samsung",
+        category: "mobile",
+        price: 50000
+    },
+
+    {
+        id: 3,
+        name: "Dell",
+        category: "laptop",
+        price: 60000
+    }
+];
+
+let cart = [];
+
+
+// Display Products
+function displayProducts(items) {
+
+    items.forEach(product => {
+
+        console.log(
+            product.name,
+            product.category,
+            product.price
+        );
+
+    });
+}
+
+
+// Search Product
+function searchProduct(searchText) {
+
+    let result = products.filter(product => {
+        return product.name
+            .toLowerCase()
+            .includes(searchText.toLowerCase());
+    });
+
+    console.log("Search Result:");
+    displayProducts(result);
+}
+
+
+// Filter Category
+function filterCategory(category) {
+
+    let result = products.filter(product => {
+        return product.category === category;
+    });
+
+    console.log("Category Filter:");
+    displayProducts(result);
+}
+
+
+// Sort By Price
+function sortByPrice() {
+
+    let sorted = [...products].sort((a, b) => {
+        return a.price - b.price;
+    });
+
+    console.log("Sorted By Price:");
+    displayProducts(sorted);
+}
+
+
+// Add To Cart
+function addToCart(id) {
+
+    let item = products.find(product => {
+        return product.id === id;
+    });
+
+    cart.push(item);
+
+    console.log(item.name + " Added To Cart");
+}
+
+
+// Total Calculation
+function calculateTotal() {
+
+    let total = cart.reduce((sum, item) => {
+        return sum + item.price;
+    }, 0);
+
+    console.log("Cart Total :", total);
+}
+
+
+// Function Calls
+displayProducts(products);
+
+searchProduct("iphone");
+
+filterCategory("mobile");
+
+sortByPrice();
+
+addToCart(1);
+
+addToCart(3);
+
+calculateTotal();
+
+//output
+/*iPhone mobile 70000
+Samsung mobile 50000
+Dell laptop 60000
+
+Search Result:
+iPhone mobile 70000
+
+Category Filter:
+iPhone mobile 70000
+Samsung mobile 50000
+
+Sorted By Price:
+Samsung mobile 50000
+Dell laptop 60000
+iPhone mobile 70000
+
+iPhone Added To Cart
+Dell Added To Cart
+
+Cart Total : 130000*/   
