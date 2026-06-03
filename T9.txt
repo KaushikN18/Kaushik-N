@@ -1,0 +1,217 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    padding:20px;
+    background:#f5f5f5;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.stats{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+
+.card img{
+    width:100%;
+    height:250px;
+    object-fit:contain;
+}
+
+.card h3{
+    margin:10px 0;
+}
+
+.card p{
+    margin:8px 0;
+}
+
+.tag{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:5px;
+    color:white;
+    margin-bottom:10px;
+}
+
+.expensive{
+    background:red;
+}
+
+.budget{
+    background:green;
+}
+
+button{
+    margin:5px;
+    padding:8px 12px;
+    cursor:pointer;
+}
+
+.final{
+    margin-top:20px;
+    text-align:center;
+    font-weight:bold;
+    color:green;
+}
+.card{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+button{
+    margin:5px;
+    padding:8px 12px;
+    cursor:pointer;
+    border:none;
+    border-radius:5px;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    background-color:#333;
+    color:white;
+}
+
+.tag{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:5px;
+    color:white;
+    margin-bottom:10px;
+    transition:0.3s;
+}
+
+.tag:hover{
+    transform:scale(1.1);
+}
+
+const productsContainer = document.querySelector(".products");
+const stats = document.querySelector(".stats");
+const errorDiv = document.querySelector(".error");
+const finalDiv = document.querySelector(".final");
+
+fetch("https://fakestoreapi.com/products")
+.then((response) => response.json())
+.then((products) => {
+
+    stats.textContent = `Total Products: ${products.length}`;
+
+    products.forEach((product) => {
+
+        const card = document.createElement("div");
+        card.setAttribute("class", "card");
+
+        const image = document.createElement("img");
+        image.setAttribute("src", product.image);
+
+        const title = document.createElement("h3");
+        title.textContent =
+            product.title.length > 30
+            ? product.title.slice(0, 30) + "..."
+            : product.title;
+
+        const price = document.createElement("p");
+        price.textContent = `Price: $${product.price}`;
+
+        const category = document.createElement("p");
+        category.textContent = `Category: ${product.category}`;
+
+        const description = document.createElement("p");
+        description.textContent =
+            product.description.length > 50
+            ? product.description.slice(0, 50) + "..."
+            : product.description;
+
+        const tag = document.createElement("span");
+        tag.setAttribute(
+            "class",
+            product.price > 100 ? "tag expensive" : "tag budget"
+        );
+
+        tag.textContent =
+            product.price > 100
+            ? "Expensive Product"
+            : "Budget Product";
+
+        const priceBtn = document.createElement("button");
+        priceBtn.textContent = "Show Price";
+
+        priceBtn.addEventListener("click", () => {
+            alert(product.price);
+        });
+
+        const categoryBtn = document.createElement("button");
+        categoryBtn.textContent = "Show Category";
+
+        categoryBtn.addEventListener("click", () => {
+            alert(product.category);
+        });
+
+        const detailsBtn = document.createElement("button");
+        detailsBtn.textContent = "View Details";
+
+        detailsBtn.addEventListener("click", () => {
+            alert(
+                `Title: ${product.title}\nPrice: $${product.price}\nCategory: ${product.category}`
+            );
+        });
+
+        card.append(
+            image,
+            title,
+            price,
+            category,
+            description,
+            tag,
+            priceBtn,
+            categoryBtn,
+            detailsBtn
+        );
+
+        productsContainer.append(card);
+    });
+})
+.catch((error) => {
+
+    errorDiv.textContent = "Something Went Wrong";
+
+    errorDiv.style.backgroundColor = "red";
+    errorDiv.style.color = "white";
+    errorDiv.style.textAlign = "center";
+    errorDiv.style.padding = "10px";
+})
+.finally(() => {
+    finalDiv.textContent = "API Request Completed Successfully";
+});
